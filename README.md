@@ -19,7 +19,7 @@ require_once 'vendor/autoload.php';
 
 Requirements
 ------------
-Fio API PHP works with PHP 5.6 or PHP 7.
+JSON SimpleDB works with PHP 5.6 or PHP 7.
 
 Submitting bugs and feature requests
 ------------------------------------
