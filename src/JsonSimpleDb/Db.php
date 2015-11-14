@@ -48,4 +48,12 @@ class Db
         }
         return new Table($this->getTableFilename($tableName));
     }
+
+    public function createTable($tableName)
+    {
+        if ($this->tableExists($tableName)) {
+            throw new \RuntimeException(sprintf('Table "%s" already exists', $tableName));
+        }
+        file_put_contents($this->getTableFilename($tableName), '[]');
+    }
 }
