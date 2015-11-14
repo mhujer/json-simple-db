@@ -71,4 +71,22 @@ class TableTest extends \PHPUnit_Framework_TestCase
             'baz' => 'bat',
         ]], $table->find(['baz' => 'bat']));
     }
+
+    public function testUpdateData()
+    {
+        $table = new Table(__DIR__ . '/data/sample.json');
+        $this->assertSame([[
+            '_id' => '2',
+            'name' => 'bar',
+        ]], $table->find(['_id' => '2']));
+        $table->update([
+            '_id' => '2',
+        ], [
+            'name' => 'gaz'
+        ]);
+        $this->assertSame([[
+            '_id' => '2',
+            'name' => 'gaz',
+        ]], $table->find(['_id' => '2']));
+    }
 }

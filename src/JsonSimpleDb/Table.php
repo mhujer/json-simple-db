@@ -42,6 +42,10 @@ class Table
         $key = key($search);
         $value = $search[$key];
 
+        //@todo RF into array_filter
+        /*array_filter($this->jsonData, function ($item) use ($search) {
+
+        });*/
         $result = [];
         foreach ($this->jsonData as $item) {
             if ($item[$key] == $value) {
@@ -57,5 +61,21 @@ class Table
     public function insert(array $data)
     {
         $this->jsonData[] = $data;
+    }
+
+    public function update(array $search, array $update)
+    {
+        $key = key($search);
+        $value = $search[$key];
+
+        //@todo RF into array_map
+        foreach ($this->jsonData as &$item) {
+            if ($item[$key] == $value) {
+                foreach ($update as $updateKey => $updateValue) {
+                    $item[$updateKey] = $updateValue;
+                }
+            }
+        }
+        unset($item);
     }
 }
