@@ -31,10 +31,23 @@ class Table
     }
 
     /**
+     * @param array $search
      * @return array
      */
-    public function find()
+    public function find($search = [])
     {
-        return $this->jsonData;
+        if (!$search) {
+            return $this->jsonData;
+        }
+        $key = key($search);
+        $value = $search[$key];
+
+        $result = [];
+        foreach ($this->jsonData as $item) {
+            if ($item[$key] == $value) {
+                $result[] = $item;
+            }
+        }
+        return $result;
     }
 }
