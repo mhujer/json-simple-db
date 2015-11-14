@@ -13,7 +13,44 @@ Usage
 <?php
 require_once 'vendor/autoload.php';
 
-@TODO
+//initialize DB
+$db = new JsonSimpleDb\Db('./foo');
+
+//initialize table
+if (!$db->tableExists('mytable')) {
+    $db->createTable('mytable');
+}
+$table = $db->getTable('mytable');
+
+//get items count
+$table->count(); //0
+
+//insert into table
+$table->insert([
+    'id' => '1',
+    'name' => 'foo',
+]);
+
+//find by array - like in MongoDB
+$items = $table->find(['id' => '1']);
+/*
+array(1) {
+  [0] =>
+  array(2) {
+    'id' =>
+    string(1) "1"
+    'name' =>
+    string(3) "foo"
+  }
+}
+ */
+
+//update record
+$table->update(['id' => '1'], ['name' => 'boo']);
+
+//persist the data to file - don't forget this :-)
+$table->persist();
+
 
 ```
 
@@ -32,5 +69,5 @@ Martin Hujer - <mhujer@gmail.com> - <http://www.martinhujer.cz>
 Changelog
 ----------
 
-## 1.0.0 (2015-11-XX)
+## 1.0.0 (2015-11-14)
 - initial release
