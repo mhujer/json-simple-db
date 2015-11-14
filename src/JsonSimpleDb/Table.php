@@ -29,4 +29,12 @@ class Table
     {
         return count($this->jsonData);
     }
+
+    /**
+     * @return array
+     */
+    public function find()
+    {
+        return $this->jsonData;
+    }
 }
