@@ -1,6 +1,6 @@
 # JSON SimpleDB [![Build Status](https://travis-ci.org/mhujer/json-simple-db.svg?branch=master)](https://travis-ci.org/mhujer/json-simple-db)
 
-[![Latest Stable Version](https://poser.pugx.org/mhujer/json-simple-db/version.png)](https://packagist.org/packages/mhujer/json-simple-db) [![Total Downloads](https://poser.pugx.org/mhujer/json-simple-db/downloads.png)](https://packagist.org/packages/mhujer/json-simple-db) [![License](https://poser.pugx.org/mhujer/json-simple-db/license.svg)](https://packagist.org/packages/mhujer/json-simple-db)  [![Coverage Status](https://coveralls.io/repos/mhujer/json-simple-db/badge.svg?branch=master)](https://coveralls.io/r/mhujer/json-simple-db?branch=master)
+[![Latest Stable Version](https://poser.pugx.org/mhujer/json-simple-db/version.png)](https://packagist.org/packages/mhujer/json-simple-db) [![Total Downloads](https://poser.pugx.org/mhujer/json-simple-db/downloads.png)](https://packagist.org/packages/mhujer/json-simple-db) [![License](https://poser.pugx.org/mhujer/json-simple-db/license.svg)](https://packagist.org/packages/mhujer/json-simple-db)  [![Coverage Status](https://coveralls.io/repos/mhujer/json-simple-db/badge.svg?branch=master&service=github)](https://coveralls.io/github/mhujer/json-simple-db?branch=master)
 
 For a project that generates static HTML I needed a data source, so I created this simple library for storing data in JSON. **It is intended only for CLI usage by a single client, not for websites!**
 
