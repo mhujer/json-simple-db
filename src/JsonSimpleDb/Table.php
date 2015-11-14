@@ -39,20 +39,10 @@ class Table
         if (!$search) {
             return $this->jsonData;
         }
-        $key = key($search);
-        $value = $search[$key];
-
-        //@todo RF into array_filter
-        /*array_filter($this->jsonData, function ($item) use ($search) {
-
-        });*/
-        $result = [];
-        foreach ($this->jsonData as $item) {
-            if ($item[$key] == $value) {
-                $result[] = $item;
-            }
-        }
-        return $result;
+        $comparator = Comparator::factory($search);
+        return array_values(array_filter($this->jsonData, function ($item) use ($comparator) {
+            return $comparator->match($item);
+        }));
     }
 
     /**
@@ -65,17 +55,15 @@ class Table
 
     public function update(array $search, array $update)
     {
-        $key = key($search);
-        $value = $search[$key];
+        $comparator = Comparator::factory($search);
 
-        //@todo RF into array_map
-        foreach ($this->jsonData as &$item) {
-            if ($item[$key] == $value) {
+        $this->jsonData = array_map(function ($item) use ($comparator, $update) {
+            if ($comparator->match($item)) {
                 foreach ($update as $updateKey => $updateValue) {
                     $item[$updateKey] = $updateValue;
                 }
             }
-        }
-        unset($item);
+            return $item;
+        }, $this->jsonData);
     }
 }
