@@ -57,4 +57,18 @@ class TableTest extends \PHPUnit_Framework_TestCase
             ],
         ], $table->find(['category' => 'cat1']));
     }
+
+    public function testInsertData()
+    {
+        $table = new Table(__DIR__ . '/data/empty.json');
+        $table->insert([
+            'foo' => 'bar',
+            'baz' => 'bat',
+        ]);
+        $this->assertSame(1, $table->count());
+        $this->assertSame([[
+            'foo' => 'bar',
+            'baz' => 'bat',
+        ]], $table->find(['baz' => 'bat']));
+    }
 }

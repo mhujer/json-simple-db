@@ -50,4 +50,12 @@ class Table
         }
         return $result;
     }
+
+    /**
+     * @param array $data
+     */
+    public function insert(array $data)
+    {
+        $this->jsonData[] = $data;
+    }
 }
