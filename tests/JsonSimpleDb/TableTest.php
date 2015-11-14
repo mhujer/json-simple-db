@@ -89,4 +89,25 @@ class TableTest extends \PHPUnit_Framework_TestCase
             'name' => 'gaz',
         ]], $table->find(['_id' => '2']));
     }
+
+    public function testPersist()
+    {
+        $jsonFilename = __DIR__ . '/workdir/persisting.json';
+        file_put_contents($jsonFilename, '[]');
+        $table = new Table($jsonFilename);
+        $table->insert([
+            'foo' => 'bar',
+            'baz' => 'bat',
+        ]);
+        $table->insert([
+            'ab' => 'cd',
+            'ef' => 'gh',
+        ]);
+        $table->persist();
+
+        $tableLoaded = new Table($jsonFilename);
+        $this->assertSame(2, $tableLoaded->count());
+
+        unlink($jsonFilename);
+    }
 }

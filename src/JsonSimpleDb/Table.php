@@ -22,6 +22,11 @@ class Table
         $this->jsonData = json_decode(file_get_contents($this->jsonFilename), true);
     }
 
+    public function persist()
+    {
+        file_put_contents($this->jsonFilename, json_encode($this->jsonData));
+    }
+
     /**
      * @return int
      */
