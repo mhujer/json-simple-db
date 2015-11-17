@@ -26,7 +26,7 @@ class Comparator
             if (!array_key_exists($key, $item)) {
                 return false;
             }
-            if ($item[$key] != $expectedValue) {
+            if ($item[$key] !== $expectedValue) {
                 return false;
             }
         }

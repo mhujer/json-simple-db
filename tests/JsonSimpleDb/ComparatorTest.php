@@ -16,6 +16,14 @@ class ComparatorTest extends \PHPUnit_Framework_TestCase
         ]));
     }
 
+    public function testCompareStrict()
+    {
+        $comparator = new Comparator(['id' => 1]);
+        $this->assertFalse($comparator->match(['id' => '1x']));
+        $this->assertFalse($comparator->match(['id' => '1']));
+        $this->assertTrue($comparator->match(['id' => 1]));
+    }
+
     public function testCompareMultiple()
     {
         $comparator = new Comparator([
