@@ -44,9 +44,9 @@ class Table
         if (!$search) {
             return $this->jsonData;
         }
-        $comparator = Comparator::factory($search);
-        return array_values(array_filter($this->jsonData, function ($item) use ($comparator) {
-            return $comparator->match($item);
+        $filter = Matcher::factory($search);
+        return array_values(array_filter($this->jsonData, function ($item) use ($filter) {
+            return $filter->match($item); //item matches the filter
         }));
     }
 
@@ -60,10 +60,10 @@ class Table
 
     public function update(array $search, array $update)
     {
-        $comparator = Comparator::factory($search);
+        $filter = Matcher::factory($search);
 
-        $this->jsonData = array_map(function ($item) use ($comparator, $update) {
-            if ($comparator->match($item)) {
+        $this->jsonData = array_map(function ($item) use ($filter, $update) {
+            if ($filter->match($item)) { //item matches the filter
                 foreach ($update as $updateKey => $updateValue) {
                     $item[$updateKey] = $updateValue;
                 }

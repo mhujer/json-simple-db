@@ -1,19 +1,19 @@
 <?php
 namespace JsonSimpleDb;
 
-class Comparator
+class Matcher
 {
     /**
      * @var array
      */
-    protected $compareWith;
+    protected $constraints;
 
     /**
-     * @param array $compareWith
+     * @param array $constraints
      */
-    public function __construct(array $compareWith)
+    public function __construct(array $constraints)
     {
-        $this->compareWith = $compareWith;
+        $this->constraints = $constraints;
     }
 
     /**
@@ -22,7 +22,7 @@ class Comparator
      */
     public function match(array $item)
     {
-        foreach ($this->compareWith as $key => $expectedValue) {
+        foreach ($this->constraints as $key => $expectedValue) {
             if (!array_key_exists($key, $item)) {
                 return false;
             }
@@ -35,7 +35,7 @@ class Comparator
 
     /**
      * @param array $compareWith
-     * @return Comparator
+     * @return Matcher
      */
     public static function factory(array $compareWith)
     {
