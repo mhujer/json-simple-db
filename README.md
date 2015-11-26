@@ -72,6 +72,9 @@ Martin Hujer - <mhujer@gmail.com> - <http://www.martinhujer.cz>
 Changelog
 ----------
 
+## 1.1.1 (2015-11-26)
+- Stored JSON is pretty printed
+
 ## 1.1.0 (2015-11-26)
 - Added posibility to delete records
 

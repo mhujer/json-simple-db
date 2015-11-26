@@ -24,7 +24,7 @@ class Table
 
     public function persist()
     {
-        file_put_contents($this->jsonFilename, json_encode($this->jsonData));
+        file_put_contents($this->jsonFilename, json_encode($this->jsonData, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
     }
 
     /**
