@@ -90,6 +90,35 @@ class TableTest extends \PHPUnit_Framework_TestCase
         ]], $table->find(['_id' => '2']));
     }
 
+    /**
+     * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage Missing query for delete
+     */
+    public function testDeleteNoParam()
+    {
+        $table = new Table(__DIR__ . '/data/sample.json');
+        $table->delete();
+    }
+
+    public function testDelete()
+    {
+        $table = new Table(__DIR__ . '/data/sample.json');
+        $table->delete(['_id' => '2']);
+        $this->assertSame([[
+            '_id' => '1',
+            'name' => 'foo',
+        ]], $table->find());
+
+        $table->delete(['name' => 'boo']);
+        $this->assertSame([[
+            '_id' => '1',
+            'name' => 'foo',
+        ]], $table->find());
+
+        $table->delete(['name' => 'foo']);
+        $this->assertSame([], $table->find());
+    }
+
     public function testPersist()
     {
         $jsonFilename = __DIR__ . '/workdir/persisting.json';

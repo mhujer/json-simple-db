@@ -58,6 +58,22 @@ class Table
         $this->jsonData[] = $data;
     }
 
+    /**
+     * @param array $search
+     * @return array
+     */
+    public function delete($search = [])
+    {
+        if (!$search) {
+            throw new \InvalidArgumentException('Missing query for delete');
+        }
+        $filter = Matcher::factory($search);
+        //keep only items that does not match the filter
+        $this->jsonData = array_values(array_filter($this->jsonData, function ($item) use ($filter) {
+            return !$filter->match($item);
+        }));
+    }
+
     public function update(array $search, array $update)
     {
         $filter = Matcher::factory($search);

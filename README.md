@@ -48,6 +48,9 @@ array(1) {
 //update record
 $table->update(['id' => '1'], ['name' => 'boo']);
 
+//delete record
+$table->delete(['id' => '1']);
+
 //persist the data to file - don't forget this :-)
 $table->persist();
 
@@ -68,6 +71,12 @@ Martin Hujer - <mhujer@gmail.com> - <http://www.martinhujer.cz>
 
 Changelog
 ----------
+
+## 1.1.0 (2015-11-26)
+- Added posibility to delete records
+
+## 1.0.1 (2015-11-17)
+- Comparator does strict matching
 
 ## 1.0.0 (2015-11-14)
 - initial release
