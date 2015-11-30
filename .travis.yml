@@ -8,13 +8,20 @@ php:
 cache:
   directories:
     - $HOME/.composer/cache
+env:
+  matrix:
+    - PREFER_LOWEST="--prefer-lowest --prefer-stable"
+    - PREFER_LOWEST=""
 
 before_script:
-  - composer update
+  - composer update $PREFER_LOWEST
 
 script:
   - mkdir -p build/logs
-  - ./vendor/bin/phpunit
+  - composer test
+
+  # phpcs only on PHP 5.6
+  - if [[ $TRAVIS_PHP_VERSION = '5.6' ]]; then composer phpcs; fi
 
 after_script:
   - php vendor/bin/coveralls -v
